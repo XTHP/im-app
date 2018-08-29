@@ -1,7 +1,7 @@
 import avatar from '@/assets/image/1.png'
 import Button from "@/components/button";
 import Input from '@/components/input/input'
-import { changeSelf } from '@/redux/login'
+import { loginSelf } from '@/redux/login'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import './login.less'
@@ -15,7 +15,7 @@ interface IState {
 }
 interface IProps {
     self: object,
-    changeSelf: (info: object) => {}
+    loginSelf: (info: object) => {}
 }
 
 class Login extends React.Component<IProps, IState, any> {
@@ -39,6 +39,7 @@ class Login extends React.Component<IProps, IState, any> {
         // 组件销毁后，销毁监听事件
         this.inputWrap.addEventListener('animationend', this.loading, false)
     }
+    // 加载中
     public loading = (e: object) => {
         const loginClass = this.inputWrap.classList
         if (this.state.isLoading) {
@@ -48,15 +49,17 @@ class Login extends React.Component<IProps, IState, any> {
         }
 
     }
+    // 登录
     public login = (e: any) => {
         const loading = !this.state.isLoading
         const loginClass = this.inputWrap.classList
+        const state = this.state
         this.setState({
             isLoading: loading
         })
-        this.props.changeSelf({
-            email: this.state.email,
-            password: this.state.password
+        this.props.loginSelf({ 
+            email:  state.email,
+            password: state.password
         })
         if (loading) {
             loginClass.add('login-loading', "login-in")
@@ -89,7 +92,7 @@ class Login extends React.Component<IProps, IState, any> {
                 <div className="login-wrap-filter" />
                 <div className={"login-wrap " + (this.state.pwd ? 'pwd' : '')}>
                     <div className="login-image">
-                        <img src={avatar} alt="1" />
+                        <img src={avatar} alt="头像" />
                     </div>
                     <div ref={(input) => { this.inputWrap = input }} className="login-input-wrap">
                         <Input
@@ -118,7 +121,7 @@ class Login extends React.Component<IProps, IState, any> {
 }
 // 映射修改state方法
 const mapDispatchToProps = {
-    changeSelf
+    loginSelf
 }
 // 映射state
 function mapStateToProps(state: any, ownProps: any): object {
