@@ -1,3 +1,5 @@
+import io from '@/socket.js'
+console.log(io)
 const SELF_USER = 'SELF_USER'
 interface IStates {
     self: object
@@ -24,8 +26,8 @@ export function initSelf(info: any) {
         type: SELF_USER
     }
 }
-// 修改change
-export function changeSelf(info: object) {
+// 登录
+export function loginSelf(info: object) {
     return (dispatch: any) => {
         setTimeout(() => {
             dispatch(initSelf(info))
