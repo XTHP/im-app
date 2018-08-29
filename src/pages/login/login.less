@@ -1,0 +1,177 @@
+.login {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.login-wrap-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #69d5af;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.login-image {
+  position: absolute;
+  left: 50%;
+  top: -116px;
+  transform: translateX(-50%) scale(.8);
+
+  &::before {
+    content: url('../../assets/image/2.png');
+    position: absolute;
+    top: 100px;
+    left: 0;
+    transition: all .5s;
+    transform-origin: 0 0;
+    transform: rotate(0deg);
+  }
+
+  &::after {
+    content: url('../../assets/image/2.png');
+    position: absolute;
+    top: 52px;
+    right: -7px;
+    transition: all .5s;
+    transform-origin: 100% 100%;
+    transform: rotate(-84deg);
+  }
+}
+
+.pwd .login-image {
+  &::before {
+    content: url('../../assets/image/2.png');
+    position: absolute;
+    top: 95px;
+    left: 5px;
+    transform: rotate(-90deg);
+  }
+
+  &::after {
+    content: url('../../assets/image/2.png');
+    transform: rotate(5deg);
+    position: absolute;
+    top: 50px;
+    right: 5px;
+  }
+}
+
+.login-wrap {
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  height: 220px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: rgba(0,0,0,.3);
+  box-shadow: 0 0 5px 5px rgba(0,0,0,.03);
+  z-index: 0;
+  box-sizing: border-box;
+
+  .input-wrap input {
+    background: none;
+  }
+
+  .login-input-wrap {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    border: 1px solid rgba(121, 119, 119, 0.52);
+    background-color: #fff;
+    overflow: hidden;
+    width: 100%;
+    height: 120px;
+    box-sizing: border-box;
+  }
+
+  .login-loading {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    z-index: 1;
+    border: none;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      content: url('../../assets//image/loading.svg');
+      z-index: 4;
+      animation: loading 1s infinite linear;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      background-color: #fff;
+      z-index: 3;
+    }
+
+  }
+
+  .login-in {
+    animation: login .4s linear;
+  }
+
+  .login-out {
+    animation: login .4s linear reverse;
+  }
+
+  .login-buttons {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}
+@keyframes login {
+  0% {
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+  }
+
+  80% {
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+  }
+
+  100% {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+}
+@keyframes loading {
+  0% {
+    transform: translate(-50%,-50%) rotate(0);
+  }
+
+  50% {
+    transform: translate(-50%,-50%) rotate(180deg);
+  }
+
+  100% {
+    transform: translate(-50%,-50%) rotate(360deg);
+  }
+}
