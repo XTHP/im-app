@@ -1,3 +1,4 @@
+import io from '@/io.js'
 const SELF_USER = 'SELF_USER'
 interface IStates {
     self: object
@@ -27,9 +28,14 @@ export function initSelf(info: any) {
 // 修改change
 export function changeSelf(info: object) {
     return (dispatch: any) => {
-        setTimeout(() => {
-            dispatch(initSelf(info))
-        }, 9000)
+        io.emit('login', { ...info, device: '安卓' }, function (data: any) {
+            const code = data.code
+            if (code) {
+                dispatch(initSelf(data.msg))
+            } else {
+                console.log(data)
+            }
+        })
     }
 
 }

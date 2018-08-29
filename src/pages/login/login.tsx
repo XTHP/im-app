@@ -18,7 +18,7 @@ interface IProps {
     changeSelf: (info: object) => {}
 }
 
-class Login extends React.Component<IProps, IState> {
+class Login extends React.Component<IProps, IState, any> {
     public state = {
         email: '',
         isLoading: false,
@@ -54,7 +54,10 @@ class Login extends React.Component<IProps, IState> {
         this.setState({
             isLoading: loading
         })
-        this.props.changeSelf({ user: "liuhaiping" })
+        this.props.changeSelf({
+            email: this.state.email,
+            password: this.state.password
+        })
         if (loading) {
             loginClass.add('login-loading', "login-in")
         } else {
