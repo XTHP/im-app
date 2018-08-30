@@ -31,7 +31,7 @@ export function loginSelf(info: object) {
         io.emit('login', { ...info, device: '安卓' }, function (data: any) {
             const code = data.code
             if (code) {
-                localStorage.setItem('token',data.token)
+                localStorage.setItem('token', data.token)
                 dispatch(initSelf(data.msg))
             } else {
                 console.log(data)
