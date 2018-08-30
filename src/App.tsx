@@ -10,10 +10,10 @@ class App extends React.Component {
   public render() {
     return (
       <Provider store={store}>
-        <div className="App">
+        <>
           <Route exact={true} path="/" component={Login} />
           <Route exact={true} path="/main" component={Main} />
-        </div>
+        </>
       </Provider>
     );
   }

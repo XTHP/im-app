@@ -17,7 +17,6 @@ interface IProps {
     self: object,
     loginSelf: (info: object) => {}
 }
-
 class Login extends React.Component<IProps, IState, any> {
     public state = {
         email: '',
@@ -40,32 +39,31 @@ class Login extends React.Component<IProps, IState, any> {
         this.inputWrap.addEventListener('animationend', this.loading, false)
     }
     // 加载中
-    public loading = (e: object) => {
+    public loading = (e: React.MouseEvent<HTMLElement>): void => {
         const loginClass = this.inputWrap.classList
         if (this.state.isLoading) {
             loginClass.remove('login-in', 'login-out')
         } else {
             loginClass.remove('login-in', 'login-out', 'login-loading')
         }
-
     }
     // 登录
-    public login = (e: any) => {
+    public loginClick = (e: any) => {
         const loading = !this.state.isLoading
         const loginClass = this.inputWrap.classList
         const state = this.state
         this.setState({
             isLoading: loading
         })
-        this.props.loginSelf({ 
-            email:  state.email,
-            password: state.password
-        })
         if (loading) {
             loginClass.add('login-loading', "login-in")
         } else {
             loginClass.add('login-out');
         }
+        this.props.loginSelf({
+            email: state.email,
+            password: state.password
+        })
     }
     public pwdFocus = (e: any) => {
         this.setState({
@@ -110,12 +108,10 @@ class Login extends React.Component<IProps, IState, any> {
                     </div>
                     <div className="login-buttons">
                         <Button type="submit" name="registered" />
-                        <Button onClick={this.login} name="Login" />
+                        <Button onClick={this.loginClick} name="Login" />
                     </div>
                 </div>
-
             </div>
-
         )
     }
 }
