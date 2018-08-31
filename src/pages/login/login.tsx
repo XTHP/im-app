@@ -5,6 +5,7 @@ import { loginSelf } from '@/redux/login'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import './login.less'
+import toast from '@/components/toast/toast'
 interface IState {
     pwd: boolean,
     isLoading: boolean,
@@ -15,9 +16,10 @@ interface IState {
 }
 interface IProps {
     self: object,
-    loginSelf: (info: object) => {}
+    loginSelf: (info: object) => void
 }
-class Login extends React.Component<IProps, IState, any> {
+
+class Login extends React.Component<IProps, IState> {
     public state = {
         email: '',
         isLoading: false,
@@ -38,32 +40,30 @@ class Login extends React.Component<IProps, IState, any> {
         // 组件销毁后，销毁监听事件
         this.inputWrap.addEventListener('animationend', this.loading, false)
     }
-    // 加载中
-    public loading = (e: React.MouseEvent<HTMLElement>): void => {
+    public loading = (e: React.MouseEvent<HTMLElement>) => {
         const loginClass = this.inputWrap.classList
         if (this.state.isLoading) {
             loginClass.remove('login-in', 'login-out')
         } else {
             loginClass.remove('login-in', 'login-out', 'login-loading')
         }
+
     }
-    // 登录
-    public loginClick = (e: any) => {
+    public loginClick = (e: React.MouseEvent<HTMLElement>) => {
         const loading = !this.state.isLoading
         const loginClass = this.inputWrap.classList
-        const state = this.state
         this.setState({
             isLoading: loading
         })
+        this.props.loginSelf({ email: this.state.email, password: this.state.password })
         if (loading) {
             loginClass.add('login-loading', "login-in")
         } else {
             loginClass.add('login-out');
         }
-        this.props.loginSelf({
-            email: state.email,
-            password: state.password
-        })
+    }
+    public regisClick = (e: React.MouseEvent<HTMLElement>) => {
+        toast.hideToast()
     }
     public pwdFocus = (e: any) => {
         this.setState({
@@ -90,7 +90,7 @@ class Login extends React.Component<IProps, IState, any> {
                 <div className="login-wrap-filter" />
                 <div className={"login-wrap " + (this.state.pwd ? 'pwd' : '')}>
                     <div className="login-image">
-                        <img src={avatar} alt="头像" />
+                        <img src={avatar} alt="1" />
                     </div>
                     <div ref={(input) => { this.inputWrap = input }} className="login-input-wrap">
                         <Input
@@ -107,11 +107,13 @@ class Login extends React.Component<IProps, IState, any> {
                             placeholder="请输入密码" />
                     </div>
                     <div className="login-buttons">
-                        <Button type="submit" name="registered" />
+                        <Button onClick={this.regisClick} name="registered" />
                         <Button onClick={this.loginClick} name="Login" />
                     </div>
                 </div>
+
             </div>
+
         )
     }
 }
