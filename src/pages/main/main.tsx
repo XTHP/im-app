@@ -1,15 +1,17 @@
-import Appbar from '@/components/appbar/appbar'
-import ScrollWrap from '@/components/scroll/scroll'
 import * as React from 'react'
 import './main.less'
+import PaneChat from '@/pages/pane-chat-list/pane-chat-list'
+import PaneBody from '@/pages/pane-body/pane-body'
 export default class Main extends React.Component {
     public render() {
         return (
             <div className="main-wrap">
                 <div className="layout-container">
                     <div className="pane-left">
-                        <Appbar />
-                        <ScrollWrap />
+                        <PaneChat />
+                    </div>
+                    <div className="pane-body">
+                        <PaneBody />
                     </div>
                 </div>
             </div>

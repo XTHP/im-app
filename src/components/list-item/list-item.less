@@ -1,0 +1,79 @@
+.list-item {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 60px;
+  position: relative;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 8px 8px 13px;
+  color: rgba(0,0,0,.87);
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  cursor: pointer;
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  &:active {
+    background-color: rgba(0,0,0,.1);
+  }
+
+  &:hover {
+    background-color: rgba(0,0,0,.1);
+  }
+
+  .list-item-left {
+    height: 100%;
+  }
+
+  .list-item-body {
+    flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0 3px 0 8px;
+  }
+
+  .item-body-title {
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .item-body-content {
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    span {
+      color: rgba(0,0,0,.54);
+      text-overflow: ellipsis;
+    }
+  }
+
+  .list-item-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: flex-end;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px 0;
+
+    span {
+      display: inline-block;
+      height: 25px;
+      line-height: 25px;
+      color: rgba(0,0,0,.54);
+      font-size: 12px;
+      text-align: right;
+    }
+  }
+}

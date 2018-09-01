@@ -1,10 +1,29 @@
 .appbar-wrap {
   box-sizing: border-box;
-  padding: 0 8px;
+  padding: 0 8px 0 13px;
   height: 64px;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   background: #eee;
+  width: 100%;
+  z-index: 3;
+  border-radius: 5px 5px 0 0;
+
+  & > .appbar-left,
+  & > .appbar-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+  }
+
+  .appbar-body {
+    flex: 1;
+    padding: 0 15px;
+    font-size: 20px;
+    font-weight: 500;
+  }
 }

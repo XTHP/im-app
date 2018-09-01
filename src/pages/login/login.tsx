@@ -5,7 +5,7 @@ import { loginSelf } from '@/redux/login'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import './login.less'
-import toast from '@/components/toast/toast'
+// import toast from '@/components/toast/toast'
 interface IState {
     pwd: boolean,
     isLoading: boolean,
@@ -55,15 +55,15 @@ class Login extends React.Component<IProps, IState> {
         this.setState({
             isLoading: loading
         })
-        this.props.loginSelf({ email: this.state.email, password: this.state.password })
         if (loading) {
             loginClass.add('login-loading', "login-in")
         } else {
             loginClass.add('login-out');
         }
+        this.props.loginSelf({ email: this.state.email, password: this.state.password })
     }
     public regisClick = (e: React.MouseEvent<HTMLElement>) => {
-        toast.hideToast()
+        // toast.hideToast()
     }
     public pwdFocus = (e: any) => {
         this.setState({
@@ -108,7 +108,7 @@ class Login extends React.Component<IProps, IState> {
                     </div>
                     <div className="login-buttons">
                         <Button onClick={this.regisClick} name="registered" />
-                        <Button onClick={this.loginClick} name="Login" />
+                        <Button onClick={this.loginClick} disabled={state.isLoading} name="Login" />
                     </div>
                 </div>
 
