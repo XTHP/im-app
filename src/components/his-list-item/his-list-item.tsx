@@ -1,30 +1,66 @@
 import * as React from 'react'
 import './his-list-item.less'
 import Avatar from '@/components/avatar/avatar'
+import Popover from '@/components/popover/popover'
 interface IProps {
     avatar: string,
     title: string,
     content: string,
     time: string,
-    num: number
+    isLeft: boolean
 }
-export default class HisItem extends React.Component<IProps, {}> {
+interface IStates {
+    open: boolean,
+    trigger: HTMLSpanElement | null
+}
+export default class HisItem extends React.Component<IProps, IStates> {
+    public state = {
+        open: false,
+        trigger: null
+    }
+    private popover: HTMLSpanElement
+    constructor(props: IProps) {
+        super(props)
+    }
+    public componentDidMount() {
+        this.setState({
+            trigger: this.popover
+        })
+    }
+    public toggleClick = (e: any) => {
+        this.setState({
+            open: !this.state.open
+        })
+    }
+    public close = (): void => {
+        this.setState({
+            open: false
+        })
+    }
     public render() {
-        const { avatar } = this.props
+        const { avatar, isLeft, title, content } = this.props
         return (
             <div className='his-item-wrap'>
                 <div className="his-item-left">
                     <Avatar src={avatar} size={45} />
                 </div>
-                <div className="his-content">
+                <div className={"his-content his-content-" + (isLeft ? "left" : "right")}>
                     <div className="content-title">
-                        <span>刘海平</span>
+                        <span>{title}</span>
+                        <span>11:30</span>
                     </div>
                     <div className="content-body">
-                        <span>是的范德萨发多少解放ID设计费我解放is第几集覅见覅绝对是覅决定书地方贾斯丁见覅及飞是见覅及覅是的覅打飞机风景</span>
+                        <span className="content">{content}
+                            <span ref={((ref: HTMLSpanElement) => this.popover = ref)} onClick={this.toggleClick} className="more">
+                                <i className="material-icons icon-color">more_horiz</i>
+                            </span>
+                        </span>
+                        <Popover open={this.state.open}
+                            close={this.close}
+                            trigger={this.state.trigger} />
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
