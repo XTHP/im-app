@@ -32,11 +32,6 @@ export default class HisItem extends React.Component<IProps, IStates> {
             open: !this.state.open
         })
     }
-    public close = (): void => {
-        this.setState({
-            open: false
-        })
-    }
     public render() {
         const { avatar, isLeft, title, content } = this.props
         return (
@@ -56,7 +51,6 @@ export default class HisItem extends React.Component<IProps, IStates> {
                             </span>
                         </span>
                         <Popover open={this.state.open}
-                            close={this.close}
                             trigger={this.state.trigger} />
                     </div>
                 </div>

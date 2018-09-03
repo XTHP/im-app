@@ -20,7 +20,7 @@ export default class PaneBody extends React.Component {
             searchRef: this.searchRef
         })
     }
-    public test = () => {
+    public toggleClick = (e: any) => {
         this.setState({
             open: !this.state.open
         })
@@ -34,7 +34,7 @@ export default class PaneBody extends React.Component {
                     <div slot="right">
                         <button type="button"
                             ref={(ref: HTMLButtonElement) => this.searchRef = ref}
-                            onClick={this.test}
+                            onClick={this.toggleClick}
                             className="button-icon">
                             <i className="material-icons icon-color">search</i>
                         </button>
@@ -48,21 +48,18 @@ export default class PaneBody extends React.Component {
                     <>
                         <section>
                             <HisItem avatar={avatarSrc}
-                                key={Math.random()}
                                 title="XTHP"
                                 content="你好呀"
                                 time="11:30"
                                 num={0}
                                 isLeft={true} />
                             <HisItem avatar={avatarSrc}
-                                key={Math.random()}
                                 title="XTHP"
                                 content="你好呀"
                                 time="11:30"
                                 num={0}
                                 isLeft={true} />
                             <HisItem avatar={avatarSrc}
-                                key={Math.random()}
                                 title="XTHP"
                                 content="你好呀"
                                 time="11:30"

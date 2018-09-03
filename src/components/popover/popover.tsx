@@ -3,7 +3,6 @@ import * as ReactDOM from 'react-dom'
 import './popover.less'
 import * as ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 interface IProps {
-    close: () => void,
     trigger: HTMLElement
 }
 class PopoverWrap extends React.Component<IProps, {}> {
@@ -19,10 +18,10 @@ class PopoverWrap extends React.Component<IProps, {}> {
         document.body.addEventListener('click', this.close)
     }
     public close = (e: any) => {
-        this.props.close()
-    }
-    public componentWillUnmount() {
         document.body.removeEventListener('click', this.close)
+        if (!this.props.trigger.contains(e.target)) {
+            this.props.trigger.click()
+        }
     }
     /**
      * 计算位置
@@ -75,8 +74,7 @@ function Popover(props: any) {
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
         >
-            {props.open ? <PopoverWrap trigger={props.trigger}
-                close={props.close} /> : ''}
+            {props.open ? <PopoverWrap trigger={props.trigger} key={Math.random() * 10} /> : ''}
         </ReactCSSTransitionGroup >
     )
 }
