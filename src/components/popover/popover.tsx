@@ -58,9 +58,7 @@ class PopoverWrap extends React.Component<IProps, {}> {
                     ref={(ref: HTMLDivElement) => this.popover = ref}
                     style={this.state.stylePopover}
                 >
-                    <ul>
-                        <li>你好</li>
-                    </ul>
+                    {this.props.children}
                 </div>
             </>,
             document.body as HTMLElement
@@ -74,7 +72,9 @@ function Popover(props: any) {
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
         >
-            {props.open ? <PopoverWrap trigger={props.trigger} key={Math.random() * 10} /> : ''}
+            {props.open ? <PopoverWrap trigger={props.trigger} key={Math.random() * 10}>
+                {props.children}
+            </PopoverWrap> : ''}
         </ReactCSSTransitionGroup >
     )
 }

@@ -51,7 +51,12 @@ export default class HisItem extends React.Component<IProps, IStates> {
                             </span>
                         </span>
                         <Popover open={this.state.open}
-                            trigger={this.state.trigger} />
+                            trigger={this.state.trigger}>
+                            <ul>
+                                <li>发送消息</li>
+                                {!isLeft ? <li>撤回消息</li> : ''}
+                            </ul>
+                        </Popover>
                     </div>
                 </div>
             </div >

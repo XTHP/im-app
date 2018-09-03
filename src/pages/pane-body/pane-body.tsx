@@ -2,7 +2,7 @@ import * as React from 'react'
 import './pane-body.less'
 import Appbar from '@/components/appbar/appbar'
 import ScrollWrap from '@/components/scroll/scroll'
-import Search from '@/components/search/search'
+import MsgSend from '@/components/msg-send/msg-send'
 import Avatar from '@/components/avatar/avatar'
 import HisItem from '@/components/his-list-item/his-list-item'
 import Popover from '@/components/popover/popover'
@@ -38,7 +38,11 @@ export default class PaneBody extends React.Component {
                             className="button-icon">
                             <i className="material-icons icon-color">search</i>
                         </button>
-                        <Popover open={this.state.open} trigger={this.state.searchRef} />
+                        <Popover open={this.state.open} trigger={this.state.searchRef}>
+                            <ul>
+                                <li>登录</li>
+                            </ul>
+                        </Popover>
                         <button className="button-icon">
                             <i className="material-icons icon-color">more_vert</i>
                         </button>
@@ -65,10 +69,16 @@ export default class PaneBody extends React.Component {
                                 time="11:30"
                                 num={0}
                                 isLeft={true} />
+                            <HisItem avatar={avatarSrc}
+                                title="XTHP"
+                                content="你好呀"
+                                time="11:30"
+                                num={0}
+                                isLeft={false} />
                         </section>
                     </>
                 </ScrollWrap>
-                <Search />
+                <MsgSend />
             </div>
         )
     }

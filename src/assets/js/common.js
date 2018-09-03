@@ -1,3 +1,0 @@
-function has(dom,domChild){
-    
-}
