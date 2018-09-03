@@ -20,11 +20,28 @@
   .pane-left {
     width: 40%;
     height: 100%;
+    overflow: hidden;
   }
 
   .pane-body {
     width: 60%;
     height: 100%;
+    overflow: hidden;
+  }
+}
+
+.pane-right {
+  width: 0;
+  overflow: hidden;
+}
+
+.show-pane {
+  .pane-body {
+    width: 0;
+  }
+
+  .pane-right {
+    width: 60%;
   }
 }
 @media screen and (max-width: 648px) {
@@ -42,6 +59,16 @@
       position: absolute;
     }
   }
+
+  .show-pane {
+    .pane-body {
+      width: 100%;
+    }
+
+    .pane-right {
+      width: 100%;
+    }
+  }
 }
 @media screen and (min-width: 1360px) {
   .layout-container {
@@ -57,6 +84,16 @@
       width: 75%;
     }
   }
+
+  .show-pane {
+    .pane-body {
+      width: 50%;
+    }
+
+    .pane-right {
+      width: 25%;
+    }
+  }
 }
 @media screen and (min-width: 1920px) {
   .layout-container {
@@ -70,6 +107,16 @@
 
     .pane-body {
       width: 72%;
+    }
+  }
+
+  .show-pane {
+    .pane-body {
+      width: 44%;
+    }
+
+    .pane-right {
+      width: 28%;
     }
   }
 }

@@ -8,19 +8,19 @@ import HisItem from '@/components/his-list-item/his-list-item'
 import Popover from '@/components/popover/popover'
 import avatarSrc from '@/assets/image/avatartest.jpg'
 export default class PaneBody extends React.Component {
-    public searchRef: HTMLButtonElement
+    public moreRef: HTMLButtonElement
     public state = {
-        open: false,
-        searchRef: HTMLButtonElement
+        moreRef: HTMLButtonElement,
+        open: false
     }
     private scroll: any
     public componentDidMount() {
         this.scroll.scrollBottom()
         this.setState({
-            searchRef: this.searchRef
+            moreRef: this.moreRef
         })
     }
-    public toggleClick = (e: any) => {
+    public moreClick = (e: any) => {
         this.setState({
             open: !this.state.open
         })
@@ -33,19 +33,20 @@ export default class PaneBody extends React.Component {
                     <span slot="body">XTHP</span>
                     <div slot="right">
                         <button type="button"
-                            ref={(ref: HTMLButtonElement) => this.searchRef = ref}
-                            onClick={this.toggleClick}
                             className="button-icon">
                             <i className="material-icons icon-color">search</i>
                         </button>
-                        <Popover open={this.state.open} trigger={this.state.searchRef}>
-                            <ul>
-                                <li>登录</li>
-                            </ul>
-                        </Popover>
-                        <button className="button-icon">
+                        <button className="button-icon"
+                            ref={(ref: HTMLButtonElement) => this.moreRef = ref}
+                            onClick={this.moreClick}>
                             <i className="material-icons icon-color">more_vert</i>
                         </button>
+                        <Popover open={this.state.open} trigger={this.state.moreRef}>
+                            <ul>
+                                <li>群组信息</li>
+                                <li>退出聊天</li>
+                            </ul>
+                        </Popover>
                     </div>
                 </Appbar>
                 <ScrollWrap ref={(ref: any) => this.scroll = ref}>
