@@ -24,6 +24,7 @@
   }
 
   .pane-body {
+    transition: all .5s;
     width: 60%;
     height: 100%;
     overflow: hidden;
@@ -33,15 +34,18 @@
 .pane-right {
   width: 0;
   overflow: hidden;
+  transition: all .5s;
 }
 
 .show-pane {
   .pane-body {
     width: 0;
+    transition: all .5s;
   }
 
   .pane-right {
     width: 60%;
+    transition: all .5s;
   }
 }
 @media screen and (max-width: 648px) {
@@ -63,10 +67,12 @@
   .show-pane {
     .pane-body {
       width: 100%;
+      transition: all .3s;
     }
 
     .pane-right {
       width: 100%;
+      transition: all .3s;
     }
   }
 }
@@ -82,16 +88,18 @@
 
     .pane-body {
       width: 75%;
-      transform: width .5s;
+      transition: all .3s;
     }
   }
 
   .show-pane {
     .pane-body {
+      transition: all .3s;
       width: 50%;
     }
 
     .pane-right {
+      transition: all .3s;
       width: 25%;
     }
   }
@@ -107,16 +115,19 @@
     }
 
     .pane-body {
+      transition: all .3s;
       width: 75%;
     }
   }
 
   .show-pane {
     .pane-body {
+      transition: all .3s;
       width: 50%;
     }
 
     .pane-right {
+      transition: all .3s;
       width: 25%;
     }
   }
