@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './pane-body.less'
+import { connect } from 'react-redux'
 import Appbar from '@/components/appbar/appbar'
 import ScrollWrap from '@/components/scroll/scroll'
 import MsgSend from '@/components/msg-send/msg-send'
@@ -7,7 +8,12 @@ import Avatar from '@/components/avatar/avatar'
 import HisItem from '@/components/his-list-item/his-list-item'
 import Popover from '@/components/popover/popover'
 import avatarSrc from '@/assets/image/avatartest.jpg'
-export default class PaneBody extends React.Component {
+import { change_right } from '@/redux/action/status'
+interface IProps{
+    change_right:(a:boolean)=>void,
+    right_state: boolean
+}
+class PaneBody extends React.Component<IProps,{}> {
     public moreRef: HTMLButtonElement
     public state = {
         moreRef: HTMLButtonElement,
@@ -24,6 +30,10 @@ export default class PaneBody extends React.Component {
         this.setState({
             open: !this.state.open
         })
+    }
+    public changeRight=(e:any)=>{
+        console.log(this.props.right_state)
+        this.props.change_right(!this.props.right_state)
     }
     public render() {
         return (
@@ -43,7 +53,7 @@ export default class PaneBody extends React.Component {
                         </button>
                         <Popover open={this.state.open} trigger={this.state.moreRef}>
                             <ul>
-                                <li>群组信息</li>
+                                <li onClick={this.changeRight}>群组信息</li>
                                 <li>退出聊天</li>
                             </ul>
                         </Popover>
@@ -84,3 +94,15 @@ export default class PaneBody extends React.Component {
         )
     }
 }
+// 映射修改state方法
+const mapDispatchToProps = {
+    change_right
+}
+// 映射state
+function mapStateToProps(state: any, ownProps: any): object {
+    const statusReducer = state.statusReducer
+    return {
+        right_state: statusReducer.right_information
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(PaneBody)

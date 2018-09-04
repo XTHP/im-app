@@ -1,7 +1,7 @@
 import avatar from '@/assets/image/1.png'
 import Button from "@/components/button";
 import Input from '@/components/input/input'
-import { loginSelf } from '@/redux/login'
+import { loginSelf } from '@/redux/action/login'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import './login.less'
